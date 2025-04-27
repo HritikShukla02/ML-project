@@ -1,5 +1,5 @@
 import sys
-
+from src.logger import logging
 def error_msg_Details(error, error_details:sys):
     """Format error message with details"""
     _, _, exc_tb = error_details.exc_info()
@@ -24,4 +24,5 @@ class CustomError(Exception):
 #     try:
 #         10/0
 #     except Exception as e:
+#         logging.info("Division by Zero")
 #         raise CustomError(e, sys)
