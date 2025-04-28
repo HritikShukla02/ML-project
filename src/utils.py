@@ -4,7 +4,7 @@ import dill
 
 from src.exceptions import CustomError
 from src.logger import logging
-
+from sklearn.metrics import r2_score
 
 def save_obj(file_path, obj):
     try:
@@ -20,3 +20,10 @@ def save_obj(file_path, obj):
 
     except Exception as e:
         raise CustomError(e, sys)
+    
+def evaluate_model(true, predicted):
+    # mae = mean_absolute_error(true, predicted)
+    # mse = mean_squared_error(true, predicted)
+    # rmse = np.sqrt(mean_squared_error(true, predicted))
+    r2_square = r2_score(true, predicted)
+    return r2_square
