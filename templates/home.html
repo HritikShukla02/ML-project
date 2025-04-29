@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Flask Form</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 600px;
+            margin: 2em auto;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 1em;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.3em;
+            font-weight: bold;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box; /* Include padding in width */
+        }
+        button {
+            padding: 0.7em 1.5em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .response-area {
+            margin-top: 2em;
+            padding: 1em;
+            background-color: #f0f0f0;
+            border: 1px dashed #aaa;
+            border-radius: 3px;
+            white-space: pre-wrap; /* Preserve formatting */
+            word-wrap: break-word; /* Break long lines */
+        }
+        h1, h2 {
+             text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Input Form</h1>
+
+    <form method="POST" action="{{url_for('predict_datapoint')}}">
+        {# action="/" submits the form to the same URL #}
+
+        <h2>Select Categorical Features</h2>
+        <div class="form-group">
+            <label for="option1">Choose a Gender:</label>
+            <select id="option1" name="option1" required>
+                <option value="">--Please choose an option--</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="option2">Choose Race/Ethnicity:</label>
+            <select id="option2" name="option2" required>
+                <option value="">--Please choose an option--</option>
+                <option value="group A">Group A</option>
+                <option value="group B">Group B</option>
+                <option value="group C">Group C</option>
+                <option value="group D">Group D</option>
+                <option value="group E">Group E</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="option3">Choose Parental level of Education:</label>
+            <select id="option3" name="option3" required>
+                <option value="">--Please choose an option--</option>
+                <option value="bachelor's degree">bachelor's degree</option>
+                <option value="some college">some college</option>
+                <option value="master's degree">master's degree</option>
+                <option value="associate's degree">associate's degree</option>
+                <option value="high school">high school</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="option4">Choose Lunch:</label>
+            <select id="option4" name="option4" required>
+                <option value="">--Please choose an option--</option>
+                <option value="standard">standard</option>
+                <option value="free/reduced">free/reduced</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="option5">Choose Test preparation course:</label>
+            <select id="option5" name="option5" required>
+                <option value="">--Please choose an option--</option>
+                <option value="completed">Completed</option>
+                <option value="none">Not completed</option>
+            </select>
+        </div>
+
+        <h2>Enter Numerical Features</h2>
+        <div class="form-group">
+            <label for="num1">Reading Score (out of 100):</label>
+            <input type="number" id="num1" name="num1" step="any" required>
+            {# step="any" allows decimals. Use step="1" for integers only #}
+        </div>
+
+        <div class="form-group">
+            <label for="num2">Writing Score (out of 100):</label>
+            <input type="number" id="num2" name="num2" step="any" required>
+            {# step="any" allows decimals. Use step="1" for integers only #}
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit">
+        </div>
+
+    </form>
+<h2>The predicted math score is: {{result}}</h2>
+</body>
+</html>

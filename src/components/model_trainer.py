@@ -67,7 +67,8 @@ class ModelTrainer:
                 model_test_r2 = evaluate_model(y_test, y_test_pred)
                 r2_list.append(model_test_r2)
 
-                model_list.append(list(models.keys())[i])
+                # model_list.append(list(models.keys())[i])
+                model_list.append(model)
 
             logging.info('Models trained.')
             return model_list, r2_list
@@ -83,7 +84,7 @@ class ModelTrainer:
             logging.info('Getting best model.')
             best_score = np.argmax(r2)
             model = models[best_score]
-
+            
             logging.info('Saving best model')
             save_obj(
                 self.model_trainer_config.trained_model_path,

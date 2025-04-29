@@ -20,6 +20,21 @@ def save_obj(file_path, obj):
 
     except Exception as e:
         raise CustomError(e, sys)
+
+def load_object(file_path):
+    try:
+        # Ensure the directory where the file will be saved exists
+        # dir_path = os.path.dirname(file_path)
+        # os.makedirs(dir_path, exist_ok=True)
+
+        # Now open the actual file to write the object
+        with open(file_path, 'rb') as file_obj:
+            obj =  dill.load(file_obj)
+        logging.info(f"Loaded object type: {type(obj)}")
+        logging.info("Object loaded from .pkl file successfully.")
+        return obj
+    except Exception as e:
+        raise CustomError(e, sys)
     
 def evaluate_model(true, predicted):
     # mae = mean_absolute_error(true, predicted)
